@@ -1,0 +1,32 @@
+# .goreleaser.yaml
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    main: ./cmd/clean_repeat_files
+    binary: clean_repeat_files
+
+archives:
+  - format: tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+    # Files to add to the archive (optional).
+    # Files can be defined as a list of globs, or a list of maps with the following keys:
+    # - glob: the glob to match files
+    # - strip_parent: whether to strip the parent directory from the files (defaults to false)
+    # - dest: the destination path inside the archive (defaults to the glob)
+    files:
+      - README.md
+
+checksum:
+  name_template: "{{ .ProjectName }}_{{ .Version }}_checksums.txt"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:' 
