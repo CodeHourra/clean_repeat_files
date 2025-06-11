@@ -72,7 +72,30 @@ go run ./cmd/clean_repeat_files
 
 ## 跨平台编译
 
-此项目将集成 GoReleaser 以支持多平台编译和发布。具体使用方法将在 GoReleaser 配置完成后更新。
+此项目已集成 GoReleaser 以支持多平台编译和发布。您可以使用以下命令进行构建和发布：
+
+### 构建快照版本 (用于测试)
+
+```bash
+make snapshot
+```
+
+此命令将在 `dist/` 目录下生成一个快照版本，而无需创建 Git 标签。
+
+### 构建正式发布版本
+
+1.  确保您的代码已提交并且工作目录干净。
+2.  为您的发布创建一个 Git 标签 (例如 `v1.0.0`)：
+    ```bash
+    git tag v1.0.0
+    git push origin v1.0.0
+    ```
+3.  运行发布命令：
+    ```bash
+    make release
+    ```
+
+此命令将根据 `.goreleaser.yaml` 配置，在 `dist/` 目录下生成所有配置的平台（例如 macOS amd64 和 arm64）的二进制文件和归档文件，并生成校验和。
 
 ## 注意事项
 
