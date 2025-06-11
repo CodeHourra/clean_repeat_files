@@ -12,8 +12,7 @@ builds:
     binary: clean_repeat_files
 
 archives:
-  - format: tar.gz
-    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+  - name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
     # Files to add to the archive (optional).
     # Files can be defined as a list of globs, or a list of maps with the following keys:
     # - glob: the glob to match files
